@@ -22,12 +22,13 @@ File: style.css
  */
 
 /* General */
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
 
 body {
   font-size: 14px;
   color: #4c5258;
   letter-spacing: 0.5px;
-  font-family: Roboto, sans-serif;
+  font-family: 'Manrope', sans-serif;
   background-color: #FFFFFF;
   overflow-x: hidden;
 }
