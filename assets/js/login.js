@@ -1,4 +1,5 @@
 const loginForm = document.getElementById("loginForm");
+const loginError = document.getElementById("loginError");
 
 loginForm.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -16,6 +17,19 @@ loginForm.addEventListener("submit", function (event) {
     body: JSON.stringify(payload),
   })
     .then((response) => response.json())
-    .then((data) => console.log(data))
+    .then((data) => {
+      if (data.status === 200) {
+        loginError.innerHTML = "";
+        toastr.success("Login Successful");
+        window.location.href = "dashboard.html";
+      } else if (data.errors) {
+        loginError.innerHTML = data.errors[0].email;
+        toastr.error(data.errors[0].email);
+      } else {
+        loginError.innerHTML = data.message;
+        console.log(data.message);
+        toastr.error(data.message);
+      }
+    })
     .catch((error) => console.log(error));
 });
